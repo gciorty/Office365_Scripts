@@ -1,0 +1,7 @@
+Connect-EXOPSSession -UserPrincipalName "Type account here"
+$Users = Get-Mailbox | select -Expand Alias
+for ($i=0; $i -lt $Users.Length;$i++) 
+{Get-Mailbox $Users[$i] | Get-MailboxRegionalConfiguration | Set-MailboxRegionalConfiguration -Language en-GB 
+-DateFormat "dd/MM/yyyy" -TimeFormat "HH:mm" -TimeZone "GMT Standard Time"}
+
+
